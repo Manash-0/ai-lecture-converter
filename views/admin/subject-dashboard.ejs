@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= subject.name %> - Admin Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin: <%= subject.name %></h1>
+            <p>Upload a new lecture PDF to generate content for this subject.</p>
+            <a href="/admin">Back to Main Dashboard</a>
+        </header>
+        <main>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="title">Lecture Title:</label>
+                    <input type="text" id="title" name="title" required placeholder="e.g., Introduction to Algorithms">
+                </div>
+                <div class="form-group">
+                    <label for="unit">Unit:</label>
+                    <select id="unit" name="unit" required>
+                        <% units.forEach(unit => { %>
+                            <option value="<%= unit.id %>"><%= unit.title %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pdfFile">PDF File:</label>
+                    <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" required>
+                </div>
+                <button type="submit" id="submitBtn">Upload and Generate</button>
+            </form>
+            <div id="status"></div>
+        <button id="theme-toggle">🌙</button>
+    <script src="/script.js"></script>
+        </main>
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const statusDiv = document.getElementById('status');
+        const submitBtn = document.getElementById('submitBtn');
+        const subjectId = '<%= subjectId %>';
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            statusDiv.textContent = 'Uploading... This may take a moment. ⏳';
+
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(`/admin/${subjectId}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error);
+                
+                statusDiv.textContent = `✅ Success: ${result.message}`;
+                statusDiv.style.color = 'green';
+                form.reset();
+            } catch (error) {
+                statusDiv.textContent = `❌ Error: ${error.message}`;
+                statusDiv.style.color = 'red';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Upload and Generate';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Subjects</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Available Subjects</h1>
+        <p>Select a subject to view the lecture notes.</p>
+        <div class="subjects-list">
+             <% subjects.forEach(subject => { %>
+                <div class="subject-management">
+                    <a href="/<%= subject.id %>" style="text-decoration: none; color: inherit; width: 100%;">
+                        <strong><%= subject.name %></strong> (<%= subject.totalLectures %> Lectures)
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <!-- THEME TOGGLE BUTTON AND SCRIPT -->
+    <button id="theme-toggle">🌙</button>
+    <script src="/script.js"></script>
+</body>
+</html>
