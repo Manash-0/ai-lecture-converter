@@ -13,13 +13,15 @@ function loadSubjects() {
     if (!fs.existsSync(subjectsFile)) {
       fs.writeFileSync(subjectsFile, JSON.stringify({}, null, 2));
     }
-    const data = fs.readFileSync(subjectsFile, "utf-8");
+    const data = fs.readFileSync(subjectsFile, "utf-8").trim();
+    if (!data) return {};
     return JSON.parse(data);
   } catch (err) {
     console.error("Error loading subjects:", err);
     return {};
   }
 }
+
 
 function saveSubjects(subjects) {
   try {
