@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= subject.name %></title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="main-wrapper">
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <h3><%= subject.name %></h3>
+                <a href="/">All Subjects</a>
+            </header>
+            <nav class="lecture-nav">
+                <% units.forEach(unit => { %>
+                    <div class="unit">
+                        <button class="unit-btn"><%= unit.title %> ▾</button>
+                        <ul class="lecture-list">
+                            <% if (unit.lectures.length > 0) { %>
+                                <% unit.lectures.forEach(lecture => { %>
+                                    <li>
+                                        <a href="/<%= subject.code.toLowerCase() %>/lectures/<%= lecture.id %>" 
+                                           class="lecture-link <%= currentLectureId === lecture.id ? 'active' : '' %>">
+                                            <%= lecture.title %>
+                                        </a>
+                                    </li>
+                                <% }) %>
+                            <% } else { %>
+                                <li class="no-lectures" style="padding:10px; color: #888;">No lectures yet</li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% }) %>
+            </nav>
+        </aside>
+
+        <main class="content-area">
+            <article>
+                <%- currentLectureHtml %>
+            </article>
+        </main>
+        
+        <button id="theme-toggle">☀️</button>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>

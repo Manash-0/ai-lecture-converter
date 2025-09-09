@@ -1,0 +1,187 @@
+
+
+
+<div id="lec-1" class="lecture-content" data-unit="unit1">
+  <h1>lec 1</h1>
+  <h2>Course Intro: Overview</h2>
+  <h3>Overview</h3>
+  <p>Computer Graphics CMU 15-462/662</p>
+  <h3>TODAY: Overview Computer Graphics</h3>
+  <p>Two main objectives:</p>
+  <ul>
+    <li>Try to understand broadly what computer graphics is about</li>
+    <li>“Implement” our 1st algorithm for making images of 3D shapes</li>
+  </ul>
+  <h2>Q: What is computer graphics?</h2>
+  <p>Probably an image like this comes to mind:</p>
+  <h2>Q: ...ok, but more fundamentally: What is computer graphics—and why do we need it?</h2>
+  <p>Early computer (ENIAC), 1945</p>
+  <p>There must be a better way!</p>
+  <p>SWAC CONSOLE (1950), SAGE TERMINAL (1957), FERRANTI MARK 1 STAR (1951), PDP-1 CRT (1960)</p>
+  <p>Sketchpad (Ivan Sutherland, 1963)</p>
+  <p>Us in 2021: 8k monitor 7680x4320 (~130MB)</p>
+  <p>Coming down the pipe... 2021 virtual reality headset: 2x 2160x2160 @ 90Hz => 2.3GB/s</p>
+  <h2>Why visual information?</h2>
+  <p>About 30% of brain dedicated to visual processing... eyes are highest-handwidth port into the head!</p>
+  <p>CMU 15-462/662</p>
+  <h2>What is computer graphics?</h2>
+  <p>comeputeer grapheics /kom'pyoodor 'grafiks/ n. The use of computers to synthesize visual information.</p>
+  <h2>What is computer graphics? Why only visual?</h2>
+  <p>Cisual information, D</p>
+  <p>Graphics has evolved a lot since its early days... no longer just about turning on pixels!</p>
+  <p>Turning digital information into sensory stimuli (sound) (touch)</p>
+  <p>comeputeer grapheics /kom'pyoodor 'grafiks/ . The use of computers to synthesize and manipulate sensory information. (...What about taste? Smell?!)</p>
+  <p>Turning digital information into physical matter</p>
+  <h2>Definition of Graphics, Revisited</h2>
+  <p>comeputeer graphics /kom'pyoodor 'grafiks/ n. The use of computation to turn digital information into sensory stimuli.</p>
+  <p>Even this definition is too narrow...</p>
+  <p>SIGGRAPH 2020 Technical Papers Trailer</p>
+  <h2>Computer graphics is everywhere!</h2>
+  <h3>Entertainment (movies, games)</h3>
+  <h3>Entertainment</h3>
+  <p>Not just cartoons!</p>
+  <p>CMU 15-462/662</p>
+  <h3>Art and design</h3>
+  <h3>Industrial design</h3>
+  <h3>Computer aided engineering (CAE)</h3>
+  <h3>Architecture</h3>
+  <h3>Scientific mathematical visualization</h3>
+  <h3>Medical/anatomical visualization</h3>
+  <h3>Navigation</h3>
+  <h3>Communication</h3>
+  <p>CMU 15-462/662</p>
+  <h2>Foundations of computer graphics</h2>
+  <p>All these applications demand sophisticated theory & systems</p>
+  <h3>Theory</h3>
+  <ul>
+    <li>basic representations (how do you digitally encode shape,)</li>
+    <li>sampling & aliasing (how do you acquire & reproduce a signal?)</li>
+    <li>numerical methods (how do you manipulate signals numerically?)</li>
+    <li>radiometry & light transport (how does light behave?)</li>
+    <li>perception (how does this all relate to humans?)</li>
+  </ul>
+  <h3>Systems</h3>
+  <ul>
+    <li>parallel, heterogeneous processing</li>
+    <li>graphics-specific programming languages</li>
+  </ul>
+  <h2>ACTIVITY: modeling and drawing a cube</h2>
+  <p>Goal: generate a realistic drawing of a cube</p>
+  <h3>Key questions:</h3>
+  <ul>
+    <li>Modeling: how do we describe the cube?</li>
+    <li>Rendering: how do we then visualize this</li>
+  </ul>
+  <h2>ACTIVITY: modeling the cube</h2>
+  <p>Suppose our cube is...</p>
+  <ul>
+    <li>centered at the origin ($0,0,0$)</li>
+    <li>has dimensions $2 \times 2 \times 2$</li>
+    <li>edges are aligned with x/y/z axes</li>
+  </ul>
+  <p>QUESTION: What are the coordinates of the cube vertices?</p>
+  <p>A: ($1, 1, 1$) E: ($1, 1, -1$)</p>
+  <p>B: ($-1, 1, 1$) F: ($-1, 1, -1$)</p>
+  <p>C: ($1, -1, 1$) G: ($1, -1, -1$)</p>
+  <p>D: ($-1, -1, 1$) H: ($-1, -1, -1$)</p>
+  <p>QUESTION: What about the edges?</p>
+  <p>AB, CD, EF, GH,</p>
+  <p>AC, BD, EG, FH,</p>
+  <p>AE, CG, BF, DH</p>
+  <h2>ACTIVITY: drawing the cube</h2>
+  <p>Now have a digital description of the cube:</p>
+  <p>VERTICES EDGES</p>
+  <p>A: ($1, 1, 1$) E: ($1, 1, -1$)</p>
+  <p>B: ($-1, 1, 1$) F: ($-1, 1, -1$) AB, CD, EF, GH,</p>
+  <p>C: ($1, -1, 1$) G: ($1, -1, -1$) AC, BD, EG, FH,</p>
+  <p>D: ($-1, -1, 1$) H: ($-1, -1, -1$) AE, CG, BF, DH</p>
+  <p>How do we draw this 3D cube as a 2D (flat) image?</p>
+  <p>Basic strategy:</p>
+  <ol>
+    <li>map 3D vertices to 2D points in the image</li>
+    <li>connect 2D points with straight lines</li>
+  </ol>
+  <p>...ok, but how?</p>
+  <p>CMU 15-462/662</p>
+  <h2>Perspective projection</h2>
+  <p>Objects look smaller as they get further away (“perspective”)</p>
+  <p>Why does this happen?</p>
+  <p>Consider simple (“pinhole”) model of a camera:</p>
+  <p>3D object camera 2D image</p>
+  <h2>Perspective projection: side view</h2>
+  <p>Where exactly does a point $p = (x, y, z)$ end up on the image?</p>
+  <p>Let's call the image point $g = (u, v)$</p>
+  <p>Notice two similar triangles:</p>
+  <p>Assume camera has unit size, origin is at pinhole $c$</p>
+  <p>Then $v/1 = y/z$, i.e., vertical coordinate is just the slope $y/z$</p>
+  <p>Likewise, horizontal coordinate is $u = x/z$</p>
+  <h2>ACTIVITY: now draw it!</h2>
+  <p>Repeat the same simple algorithm 12 times - Once for each edge - Assume camera is at $c = (2, 3, 5)$ - Convert $(X, Y, Z)$ of both endpoints to $(u, v)$: 1. subtract camera $c$ from vertex $(X, Y, Z)$ to get $(x, y, z)$ 2. divide $(x, y)$ by $z$ to get $(u, v)$—write as a fraction - Draw line between $(u_1, v_1)$ and $(u_2, v_2)$</p>
+  <p>VERTICES EDGES</p>
+  <p>A: ($1, 1, 1$) E: ($1, 1, -1$)</p>
+  <p>B: ($-1, 1, 1$) F: ($-1, 1, -1$) AB, CD, EF, GH,</p>
+  <p>C: ($1, -1, 1$) G: ($1, -1, -1$) AC, BD, EG, FH,</p>
+  <p>D: ($-1, -1, 1$) H: ($-1, -1, -1$) AE, CG, BF, DH</p>
+  <h2>ACTIVITY: output on graph paper</h2>
+  <h2>ACTIVITY: How did you do?</h2>
+  <h2>ACTIVITY: Previous year’s result</h2>
+  <p>Success! We turned purely digital information into purely visual information, using a completely algorithmic procedure.</p>
+  <p>But wait... How do we draw lines on a computer?</p>
+  <p>Close up photo of pixels on a modern display</p>
+  <h2>Output for a raster display</h2>
+  <p>Common abstraction of a raster display:</p>
+  <ul>
+    <li>Image represented as a 2D grid of “pixels” (picture elements) **</li>
+    <li>Each pixel can can take on a unique color value ** We will strongly challenge this notion of a pixel “as a little square” soon enough. But lets go with it for now. ;-) asses?</li>
+  </ul>
+  <h2>What pixels should we color in to depict a line?</h2>
+  <p>“Rasterization”: process of converting a continuous object to a discrete representation on a raster grid (pixel grid)</p>
+  <h2>What pixels should we color in to depict a line?</h2>
+  <p>Light up all pixels intersected by the line?</p>
+  <h2>What pixels should we color in to depict a line?</h2>
+  <p>Diamond rule (used by modern GPUs): light up pixel if line passes through associated diamond</p>
+  <h2>What pixels should we color in to depict a line?</h2>
+  <p>Is there a right answer? (consider a drawing a “line” with thickness)</p>
+  <h2>How do we find the pixels satisfying a chosen rasterization rule?</h2>
+  <p>Could check every single pixel in the image to see if it meets the condition... - $O(n^2)$ pixels in image vs. at most $O(n)$ “lit up” pixels - must be able to do better! (e.g., work proportional to number of pixels in the drawing of the line)</p>
+  <h2>Incremental line rasterization</h2>
+  <p>Let's say a line is represented with integer endpoints: ($u_1, v_1$), ($u_2, v_2$)</p>
+  <p>Slope of line: $s = (v_2 - v_1) / (u_2 - u_1)$</p>
+  <p>Consider an easy special case:</p>
+  <ul>
+    <li>$u_1 < u_2, v_1 < v_2$ (line points toward upper-right) Assume integer coordinates</li>
+    <li>$0 < s < 1$ (more change in x than y)</li>
+  </ul>
+  <p>Easy to implement... not how lines are drawn in modern software/hardware!</p>
+  <p>CMU 15-462/662</p>
+  <h2>We now have our first complete graphics algorithm!</h2>
+  <p>Digital information Visual information</p>
+  <p>This is fundamentally what computer graphics is all about...</p>
+  <p>CMU 15-462/662</p>
+  <p>So far, just made a simple line drawing of a cube. For more realistic pictures, will need a much richer model of the world:</p>
+  <ul>
+    <li>GEOMETRY</li>
+    <li>MATERIALS</li>
+    <li>LIGHTS</li>
+    <li>CAMERAS</li>
+    <li>MOTION</li>
+  </ul>
+  <p>Will see all of this (and more!) as our course progresses.</p>
+  <p>Learn by making/doing!</p>
+  <p>Build up “Scotty3D” package for modeling/rendering/animation</p>
+  <h2>Assignment 1: Rasterization</h2>
+  <h2>Assignment 2: Geometric Modeling</h2>
+  <h2>Assignment 3: Photorealistic Rendering</h2>
+  <h2>Assignment 4: Animation</h2>
+  <p>A little bit more detail..</p>
+  <h2>Meet our staff!</h2>
+  <p>Course web page: <a href="http://15462.courses.cs.cmu.edu/spring2021/home">http://15462.courses.cs.cmu.edu/spring2021/home</a></p>
+  <p>Piazza page: <a href="https://piazza.com/class/kjsthko53Is2hy">https://piazza.com/class/kjsthko53Is2hy</a></p>
+  <h2>Spring 2021 Schedule</h2>
+  <h2>Mini homework 0 — Due before class next Monday</h2>
+  <p><a href="http://15462.courses.cs.cmu.edu/spring2021/article/1">http://15462.courses.cs.cmu.edu/spring2021/article/1</a></p>
+  <p>MiniHWO - Tell us about yourself</p>
+  <p>See you next time!</p>
+  <p>Before diving in, we'll do a math review & preview - Linear algebra, vector calculus - Help make the rest of the course easier!</p>
+</div>
+```
