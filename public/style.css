@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* --- GLOBAL & TYPOGRAPHY --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -326,3 +327,333 @@ body.dark-theme #theme-toggle {
     to { transform: translateY(0); opacity: 1; }
 }
 
+=======
+/* --- GLOBAL & TYPOGRAPHY --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    letter-spacing: -0.5px;
+}
+
+/* --- DARK THEME STYLES --- */
+body.dark-theme {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+body.dark-theme .container,
+body.dark-theme .add-subject-form,
+body.dark-theme .modal-content,
+body.dark-theme .sidebar {
+    background-color: #16213e;
+    color: #e0e0e0;
+    border-color: #0f3460;
+}
+body.dark-theme .main-wrapper {
+    background-color: #1a1a2e;
+}
+body.dark-theme h1, body.dark-theme h2, body.dark-theme h3 {
+    color: #e94560;
+}
+body.dark-theme .button-link { background-color: #e94560; }
+body.dark-theme .button-link-edit { background-color: #f9d423; color: #333; }
+body.dark-theme button.delete-btn { background-color: #ff6b6b; }
+body.dark-theme input, body.dark-theme textarea, body.dark-theme select {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    border-color: #533483;
+}
+body.dark-theme input:focus, body.dark-theme textarea:focus, body.dark-theme select:focus {
+    border-color: #e94560;
+}
+body.dark-theme .unit-btn, body.dark-theme .lecture-link {
+    background-color: #0f3460;
+    color: #e0e0e0;
+}
+body.dark-theme .lecture-link:hover {
+    background-color: #16213e;
+}
+body.dark-theme .lecture-link.active {
+    background-color: #e94560;
+    color: #fff;
+}
+body.dark-theme .subject-management {
+    border-color: #0f3460;
+}
+
+/* --- LAYOUT & CONTAINERS --- */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8e8e8;
+}
+
+/* --- FORMS & INPUTS --- */
+.add-subject-form {
+    background-color: #fdfdff;
+    padding: 25px;
+    border: 1px dashed #d0d8e8;
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+input[type="text"], input[type="password"], textarea, select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- BUTTONS --- */
+button {
+    display: inline-block;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s;
+    text-align: center;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2);
+    width: 100%; /* Make submit buttons full width */
+}
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+}
+
+.button-link, .button-link-edit {
+    display: inline-block;
+    padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s;
+}
+.button-link { background-color: #3498db; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2); }
+.button-link-edit { background-color: #f39c12; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2); }
+button.delete-btn { background-color: #e74c3c; color: white; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2); }
+
+.button-link:hover, .button-link-edit:hover, button.delete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+
+/* --- SUBJECT MANAGEMENT LIST --- */
+.subject-management {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+}
+.subject-management:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+.subject-actions {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* --- CONFIRM DELETE MODAL --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: slideIn 0.4s ease-out;
+}
+.modal-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.modal-actions button {
+    width: 120px;
+}
+#cancel-delete {
+    background-color: #bdc3c7;
+    color: #333;
+}
+#confirm-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* --- LECTURE VIEW STYLES --- */
+.main-wrapper {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    background: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 1px solid #e0e0e0;
+    transition: background-color 0.3s;
+}
+.content-area {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+.sidebar-header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.sidebar-header h3 { margin: 0; }
+.unit { margin-bottom: 10px; }
+.unit-btn {
+    width: 100%;
+    background: #e9ecef;
+    border: none;
+    padding: 12px;
+    text-align: left;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.lecture-list {
+    list-style: none;
+    padding-left: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+.unit.open .lecture-list {
+    max-height: 1000px;
+}
+.lecture-link {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #3498db;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+.lecture-link:hover {
+    background: #eaf6fa;
+    color: #2980b9;
+    transform: translateX(5px);
+}
+.lecture-link.active {
+    background: #3498db;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* --- THEME TOGGLE BUTTON --- */
+#theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-theme #theme-toggle {
+    background-color: #16213e;
+    border-color: #0f3460;
+    color: #e0e0e0;
+}
+
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+>>>>>>> 5727652b69a5727bc4026541f31d5c71089e0237

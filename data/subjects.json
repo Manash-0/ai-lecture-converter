@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "AEM": {
     "name": "Advanced Engineering Mathematics",
@@ -59,4 +60,67 @@
       { "id": "unit6", "title": "unit 6" }
     ]
   }
+=======
+{
+  "AEM": {
+    "name": "Advanced Engineering Mathematics",
+    "code": "AEM",
+    "units": [
+      { "id": "unit1", "title": "unit 1" },
+      { "id": "unit2", "title": "unit 2" },
+      { "id": "unit3", "title": "unit 3" },
+      { "id": "unit4", "title": "unit 4" },
+      { "id": "unit5", "title": "unit 5" },
+      { "id": "unit6", "title": "unit 6" }
+    ]
+  },
+  "CGM": {
+    "name": "Computer Graphics & Multimedia",
+    "code": "CGM",
+    "units": [
+      { "id": "unit1", "title": "unit 1" },
+      { "id": "unit2", "title": "unit 2" },
+      { "id": "unit3", "title": "unit 3" },
+      { "id": "unit4", "title": "unit 4" },
+      { "id": "unit5", "title": "unit 5" },
+      { "id": "unit6", "title": "unit 6" }
+    ]
+  },
+  "FDFED": {
+    "name": "Fullstack Development",
+    "code": "FDFED",
+    "units": [
+      { "id": "unit1", "title": "unit 1" },
+      { "id": "unit2", "title": "unit 2" },
+      { "id": "unit3", "title": "unit 3" },
+      { "id": "unit4", "title": "unit 4" },
+      { "id": "unit5", "title": "unit 5" },
+      { "id": "unit6", "title": "unit 6" }
+    ]
+  },
+  "IOTA": {
+    "name": "Internet of Things & Applications",
+    "code": "IOTA",
+    "units": [
+      { "id": "unit1", "title": "unit 1" },
+      { "id": "unit2", "title": "unit 2" },
+      { "id": "unit3", "title": "unit 3" },
+      { "id": "unit4", "title": "unit 4" },
+      { "id": "unit5", "title": "unit 5" },
+      { "id": "unit6", "title": "unit 6" }
+    ]
+  },
+  "CC": {
+    "name": "Cloud Computing",
+    "code": "CC",
+    "units": [
+      { "id": "unit1", "title": "unit 1" },
+      { "id": "unit2", "title": "unit 2" },
+      { "id": "unit3", "title": "unit 3" },
+      { "id": "unit4", "title": "unit 4" },
+      { "id": "unit5", "title": "unit 5" },
+      { "id": "unit6", "title": "unit 6" }
+    ]
+  }
+>>>>>>> 5727652b69a5727bc4026541f31d5c71089e0237
 }
